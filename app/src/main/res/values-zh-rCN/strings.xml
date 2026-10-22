@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">Optima</string>
+    <string name="app_name_short">Optima</string>
+    <string name="app_home">概览</string>
+    <string name="app_nav">菜单</string>
+    <string name="app_tuner">调优</string>
+    <string name="app_user">用户</string>
+    <string name="menu_group_apps">应用与权限</string>
+    <string name="menu_group_perf">设备性能</string>
+    <string name="menu_group_power">电池与电源</string>
+    <string name="menu_freeze">应用冻结</string>
+    <string name="menu_charge_control">充电控制</string>
+    <string name="menu_core_control">CPU 控制</string>
+    <string name="menu_power_utilization">电量统计</string>
+    <string name="menu_processes">进程</string>
+    <string name="menu_other">其他设置</string>
+    <string name="title_activity_freeze">应用冻结</string>
+    <string name="root_required">需要 Root 权限</string>
+    <string name="apply">应用</string>
+    <string name="refresh">刷新</string>
+</resources>

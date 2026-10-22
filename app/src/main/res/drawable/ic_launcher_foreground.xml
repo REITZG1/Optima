@@ -1,0 +1,70 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- Gauge track: open arc over the top, centre (54,54) radius 26 -->
+    <path
+        android:pathData="M28,62 A26,26 0 1 1 80,62"
+        android:strokeAlpha="0.28"
+        android:strokeLineCap="round"
+        android:strokeWidth="7">
+        <aapt:attr name="android:strokeColor">
+            <gradient
+                android:type="linear"
+                android:startX="28"
+                android:startY="62"
+                android:endX="80"
+                android:endY="62">
+                <item android:offset="0" android:color="#FF6C7BFF" />
+                <item android:offset="1" android:color="#FF2EE6FF" />
+            </gradient>
+        </aapt:attr>
+    </path>
+
+    <!-- Active arc: lower-left up to the top, showing the "filled" range -->
+    <path
+        android:pathData="M28,62 A26,26 0 0 1 54,28"
+        android:strokeLineCap="round"
+        android:strokeWidth="7">
+        <aapt:attr name="android:strokeColor">
+            <gradient
+                android:type="linear"
+                android:startX="28"
+                android:startY="62"
+                android:endX="54"
+                android:endY="28">
+                <item android:offset="0" android:color="#FF6C7BFF" />
+                <item android:offset="1" android:color="#FF2EE6FF" />
+            </gradient>
+        </aapt:attr>
+    </path>
+
+    <!-- Tick marks -->
+    <path android:pathData="M31,68 L35.5,66" android:strokeColor="#FF6C7BFF" android:strokeAlpha="0.85" android:strokeLineCap="round" android:strokeWidth="2.4" />
+    <path android:pathData="M54,24.5 L54,30" android:strokeColor="#FF2EE6FF" android:strokeAlpha="0.95" android:strokeLineCap="round" android:strokeWidth="2.4" />
+    <path android:pathData="M77,68 L72.5,66" android:strokeColor="#FF2EE6FF" android:strokeAlpha="0.85" android:strokeLineCap="round" android:strokeWidth="2.4" />
+
+    <!-- Needle pointing to the upper right -->
+    <path
+        android:pathData="M50.8,56.2 L66.5,35.5 L57.4,60.2 Z"
+        android:fillColor="#FFFFFFFF" />
+
+    <!-- Needle hub -->
+    <path android:pathData="M54,57m-5,0a5,5 0,1 1,10 0a5,5 0,1 1,-10 0">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:type="linear"
+                android:startX="49"
+                android:startY="52"
+                android:endX="59"
+                android:endY="62">
+                <item android:offset="0" android:color="#FF2EE6FF" />
+                <item android:offset="1" android:color="#FF6C7BFF" />
+            </gradient>
+        </aapt:attr>
+    </path>
+
+</vector>

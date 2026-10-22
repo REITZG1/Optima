@@ -1,0 +1,102 @@
+<resources>
+
+    <!-- App identity -->
+    <string name="app_name">Optima</string>
+    <string name="app_name_short">Optima</string>
+
+    <!-- Navigation -->
+    <string name="app_home">Overview</string>
+    <string name="app_nav">Menu</string>
+    <string name="app_tuner">Tuner</string>
+    <string name="app_user">User</string>
+
+    <!-- Menu groups -->
+    <string name="menu_group_apps">Apps &amp; Permissions</string>
+    <string name="menu_group_perf">Device Performance</string>
+    <string name="menu_group_power">Battery &amp; Power</string>
+    <string name="menu_group_diagnose">Diagnose</string>
+    <string name="menu_group_magisk">Magisk Modules</string>
+    <string name="menu_group_advance">Advance</string>
+    <string name="menu_group_others">Others</string>
+    <string name="menu_group_xp">Xposed Features</string>
+
+    <!-- Menu items -->
+    <string name="menu_home">Overview</string>
+    <string name="menu_activities">Activities</string>
+    <string name="menu_additional">Additional</string>
+    <string name="menu_am">Activities/Services</string>
+    <string name="menu_app_magisk">Optima module</string>
+    <string name="menu_app_profile">Per-app profile</string>
+    <string name="menu_applictions">Applications</string>
+    <string name="menu_auto_click">Auto Click</string>
+    <string name="menu_charge">Charging stats</string>
+    <string name="menu_charge_control">Charge Control</string>
+    <string name="menu_command_list">Command List</string>
+    <string name="menu_core_control">Cpu Control</string>
+    <string name="menu_custom_command">Custom Command</string>
+    <string name="menu_editor">Text Editor</string>
+    <string name="menu_files">Files</string>
+    <string name="menu_filter">Filter</string>
+    <string name="menu_fps_chart">FPS Stats</string>
+    <string name="menu_freeze">App Freezer</string>
+    <string name="menu_gesture">Gesture</string>
+    <string name="menu_img">Backup &amp; Restore</string>
+    <string name="menu_miui_thermal">Thermal Editor</string>
+    <string name="menu_modules">Magisk Modules</string>
+    <string name="menu_oplus_orms">ORMS Editor</string>
+    <string name="menu_other">Other Settings</string>
+    <string name="menu_power_utilization">Power Stats</string>
+    <string name="menu_processes">Processes</string>
+    <string name="menu_screen_test">Screen Test</string>
+    <string name="menu_sundry">Sundry</string>
+    <string name="menu_swap">SWAP Control</string>
+    <string name="menu_uninstalled">[Hide/Uninstalled] Apps</string>
+    <string name="menu_uperf">Uperf</string>
+    <string name="menu_xposed_app">Apps</string>
+    <string name="menu_xposed_global">Global</string>
+
+    <!-- Titles -->
+    <string name="title_activity_file_selector">Choose a file</string>
+    <string name="title_activity_folder_selector">Press and hold a folder to pick it</string>
+    <string name="title_activity_freeze">App Freezer</string>
+    <string name="title_activity_shortcut">Quick start</string>
+
+    <!-- Dialog / status -->
+    <string name="agree">Accept</string>
+    <string name="app_selected_none">No apps picked yet</string>
+    <string name="apps_op_completed">All done</string>
+    <string name="apps_op_fail">Failed, exit code:</string>
+    <string name="apps_op_error">The operation did not finish</string>
+    <string name="battery_night_mode">Adaptive charging rate</string>
+    <string name="bypass_switch_desc">Let games draw power directly while the fast or performance mode is active</string>
+    <string name="detail_performance_monitor">Performance meter</string>
+    <string name="detail_performance_monitor_desc">Compact live performance meter</string>
+    <string name="freezer_editing">Press and hold an icon to rearrange the list</string>
+    <string name="home_swap">Swap usage</string>
+    <string name="kr_aosp_low_power">Low power mode</string>
+    <string name="kr_aosp_low_power_desc">AOSP low power mode</string>
+    <string name="kr_aosp_night_mode">Night mode</string>
+    <string name="kr_aosp_night_mode_off">OFF</string>
+    <string name="kr_aosp_night_mode_on">ON</string>
+
+    <!-- Accessibility -->
+    <string name="accessibility_service_name">Optima Auto-Apply</string>
+    <string name="accessibility_please_activate">Switch on Optima Auto-Apply in the system settings</string>
+    <string name="accessibility_running">Auto-Apply service is running</string>
+    <string name="accessibility_service_description">Lets Optima apply per-app profiles automatically</string>
+    <string name="accessibility_closed">Optima Auto-Apply service stopped</string>
+    <string name="notification_filter">Notification filter</string>
+
+    <!-- Generic -->
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+    <string name="apply">Apply</string>
+    <string name="refresh">Refresh</string>
+    <string name="save">Save</string>
+    <string name="loading">Loading…</string>
+    <string name="error">Error</string>
+    <string name="root_required">Root required</string>
+    <string name="not_supported">Not supported on this device</string>
+    <string name="shortcut_long_label">Open the Optima overview</string>
+
+</resources>

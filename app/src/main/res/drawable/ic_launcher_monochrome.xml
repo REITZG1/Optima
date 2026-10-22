@@ -1,0 +1,27 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108"
+    android:tint="#FFFFFFFF">
+
+    <!-- Monochrome (themed icon) layer: gauge outline + needle -->
+    <path
+        android:pathData="M28,62 A26,26 0 1 1 80,62"
+        android:strokeColor="#FFFFFFFF"
+        android:strokeAlpha="0.35"
+        android:strokeLineCap="round"
+        android:strokeWidth="7" />
+    <path
+        android:pathData="M28,62 A26,26 0 0 1 54,28"
+        android:strokeColor="#FFFFFFFF"
+        android:strokeLineCap="round"
+        android:strokeWidth="7" />
+    <path
+        android:pathData="M50.8,56.2 L66.5,35.5 L57.4,60.2 Z"
+        android:fillColor="#FFFFFFFF" />
+    <path
+        android:pathData="M54,57m-4.5,0a4.5,4.5 0,1 1,9 0a4.5,4.5 0,1 1,-9 0"
+        android:fillColor="#FFFFFFFF" />
+
+</vector>

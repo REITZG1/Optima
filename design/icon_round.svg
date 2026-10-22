@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="108" height="108" viewBox="0 0 108 108">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="108" y2="108" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#151233"/>
+      <stop offset="0.5" stop-color="#241A4D"/>
+      <stop offset="1" stop-color="#0B0B22"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="54" cy="54" r="44" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#5531E0FF"/>
+      <stop offset="1" stop-color="#0031E0FF"/>
+    </radialGradient>
+    <linearGradient id="track" x1="28" y1="62" x2="80" y2="62" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#6C7BFF"/>
+      <stop offset="1" stop-color="#2EE6FF"/>
+    </linearGradient>
+    <linearGradient id="active" x1="28" y1="62" x2="54" y2="28" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#6C7BFF"/>
+      <stop offset="1" stop-color="#2EE6FF"/>
+    </linearGradient>
+    <linearGradient id="hub" x1="49" y1="52" x2="59" y2="62" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#2EE6FF"/>
+      <stop offset="1" stop-color="#6C7BFF"/>
+    </linearGradient>
+    <clipPath id="circle">
+      <circle cx="54" cy="54" r="54"/>
+    </clipPath>
+  </defs>
+
+  <g clip-path="url(#circle)">
+    <rect width="108" height="108" fill="url(#bg)"/>
+    <circle cx="54" cy="54" r="44" fill="url(#glow)"/>
+
+    <g transform="translate(54,54) scale(1.30) translate(-54,-54)">
+      <path d="M28,62 A26,26 0 1 1 80,62" fill="none" stroke="url(#track)" stroke-opacity="0.28"
+            stroke-width="7" stroke-linecap="round"/>
+      <path d="M28,62 A26,26 0 0 1 54,28" fill="none" stroke="url(#active)"
+            stroke-width="7" stroke-linecap="round"/>
+      <path d="M31,68 L35.5,66" stroke="#6C7BFF" stroke-opacity="0.85" stroke-width="2.4" stroke-linecap="round"/>
+      <path d="M54,24.5 L54,30" stroke="#2EE6FF" stroke-opacity="0.95" stroke-width="2.4" stroke-linecap="round"/>
+      <path d="M77,68 L72.5,66" stroke="#2EE6FF" stroke-opacity="0.85" stroke-width="2.4" stroke-linecap="round"/>
+      <path d="M50.8,56.2 L66.5,35.5 L57.4,60.2 Z" fill="#FFFFFF"/>
+      <circle cx="54" cy="57" r="5" fill="url(#hub)"/>
+    </g>
+  </g>
+</svg>
