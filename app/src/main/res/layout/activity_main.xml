@@ -92,6 +92,17 @@
                 android:text="Re-check"
                 android:textSize="12sp"/>
 
+            <Button
+                android:id="@+id/btn_root_manager"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:minWidth="0dp"
+                android:text="Root manager"
+                android:textSize="12sp"
+                android:visibility="gone"/>
+
         </LinearLayout>
 
             <TextView

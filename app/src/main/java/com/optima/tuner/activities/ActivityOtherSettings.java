@@ -52,6 +52,9 @@ public class ActivityOtherSettings extends AppCompatActivity {
             sb.append("Root: ").append(root.granted ? "Granted" : "Denied").append("\n");
             sb.append("  su: ").append(root.method).append("\n");
             sb.append("  ").append(root.detail).append("\n");
+            if (!root.granted && !root.hint.isEmpty()) {
+                sb.append("  ").append(root.hint).append("\n");
+            }
             return sb.toString();
         }, text -> {
             if (text != null) {

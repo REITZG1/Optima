@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -16,6 +17,7 @@ import com.optima.tuner.core.Background;
 import com.optima.tuner.core.BatteryManager;
 import com.optima.tuner.core.CpuManager;
 import com.optima.tuner.core.ProcessManager;
+import com.optima.tuner.core.RootManager;
 import com.optima.tuner.core.Shell;
 
 /**
@@ -27,7 +29,7 @@ import com.optima.tuner.core.Shell;
 public class ActivityMain extends AppCompatActivity {
     private TextView batteryView, cpuView, memView, rootView;
     private LinearLayout toggleContainer;
-    private Button btnRecheckRoot;
+    private Button btnRecheckRoot, btnRootManager;
 
     private final Handler mainHandler = new Handler(Looper.getMainLooper());
     private Thread worker;
@@ -61,15 +63,14 @@ public class ActivityMain extends AppCompatActivity {
             Background.supply(() -> {
                 Shell.resetRootCheck();
                 return Shell.getRootStatus();
-            }, status -> {
-                if (status == null) {
-                    rootView.setText("Root: unknown");
-                    return;
-                }
-                rootView.setText("Root: " + status.label() + "\n" + status.detail);
-                rootView.setTextColor(getColor(status.granted
-                        ? R.color.colorTextPrimary : R.color.colorError));
-            });
+            }, this::showRootStatus);
+        });
+
+        btnRootManager = findViewById(R.id.btn_root_manager);
+        btnRootManager.setOnClickListener(v -> {
+            if (!RootManager.open(this)) {
+                Toast.makeText(this, "No root manager found on this device", Toast.LENGTH_SHORT).show();
+            }
         });
 
         buildToggles();
@@ -78,15 +79,25 @@ public class ActivityMain extends AppCompatActivity {
 
     /** Probes root access on a background thread and shows the outcome. */
     private void refreshRootStatus() {
-        Background.supply(Shell::getRootStatus, status -> {
-            if (status == null) {
-                rootView.setText("Root: unknown");
-                return;
-            }
-            rootView.setText("Root: " + status.label() + "\n" + status.detail);
-            rootView.setTextColor(getColor(status.granted
-                    ? R.color.colorTextPrimary : R.color.colorError));
-        });
+        Background.supply(Shell::getRootStatus, this::showRootStatus);
+    }
+
+    /** Renders the root status and the hint for the next step. */
+    private void showRootStatus(Shell.RootStatus status) {
+        if (status == null) {
+            rootView.setText("Root: unknown");
+            return;
+        }
+        StringBuilder sb = new StringBuilder("Root: ").append(status.label())
+                .append('\n').append(status.detail);
+        if (!status.granted && !status.hint.isEmpty()) {
+            sb.append('\n').append(status.hint);
+        }
+        rootView.setText(sb.toString());
+        rootView.setTextColor(getColor(status.granted
+                ? R.color.colorTextPrimary : R.color.colorError));
+        // Offer a shortcut to the root manager while root is missing.
+        btnRootManager.setVisibility(status.granted ? View.GONE : View.VISIBLE);
     }
 
     private void buildToggles() {

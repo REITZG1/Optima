@@ -46,7 +46,14 @@ public final class Shell {
             "/data/adb/magisk/su",
     };
 
+    private static final Object SU_LOCK = new Object();
+
+    /** Minimum delay between two failed su lookups. */
+    private static final long SU_RETRY_INTERVAL_MS = 2000;
+
     private static String suBinary = null;
+    private static boolean suProbeDone;
+    private static long suProbeTime;
     private static Process process;
     private static BufferedWriter shellIn;
     private static BufferedReader shellOut;
@@ -75,12 +82,19 @@ public final class Shell {
         public final String detail;
         /** Exit code of the last attempt. */
         public final int exitCode;
+        /** Actionable next step for the user, or an empty string. */
+        public final String hint;
 
         RootStatus(boolean granted, String method, String detail, int exitCode) {
+            this(granted, method, detail, exitCode, "");
+        }
+
+        RootStatus(boolean granted, String method, String detail, int exitCode, String hint) {
             this.granted = granted;
             this.method = method;
             this.detail = detail;
             this.exitCode = exitCode;
+            this.hint = hint;
         }
 
         /** Short label for the UI, e.g. "Granted" or "Denied". */
@@ -110,25 +124,58 @@ public final class Shell {
 
     /**
      * Returns the discovered su binary path, or "su" as fallback.
+     *
+     * <p>Root managers such as KernelSU only make the binary visible to the
+     * app once root has been granted, and the visibility can lag a little
+     * behind the process start. A failed lookup is therefore retried every
+     * {@link #SU_RETRY_INTERVAL_MS} milliseconds instead of being cached for
+     * the whole process lifetime, so granting root in the root manager is
+     * picked up automatically.
      */
     public static String getSuBinary() {
-        if (suBinary != null) {
-            return suBinary;
-        }
-        for (String path : SU_PATHS) {
-            if (new java.io.File(path).exists()) {
-                suBinary = path;
-                Log.d(TAG, "Found su binary at: " + path);
+        synchronized (SU_LOCK) {
+            if (suBinary != null) {
                 return suBinary;
             }
+            long now = android.os.SystemClock.elapsedRealtime();
+            if (suProbeDone && now - suProbeTime < SU_RETRY_INTERVAL_MS) {
+                return "su";
+            }
+            suProbeTime = now;
+            for (String path : SU_PATHS) {
+                java.io.File f = new java.io.File(path);
+                if (f.exists() && f.canExecute()) {
+                    suBinary = path;
+                    suProbeDone = true;
+                    Log.d(TAG, "Found su binary at: " + path);
+                    return suBinary;
+                }
+            }
+            // Some ROMs ship a non-executable placeholder; fall back to a
+            // plain existence check before giving up.
+            for (String path : SU_PATHS) {
+                if (new java.io.File(path).exists()) {
+                    suBinary = path;
+                    suProbeDone = true;
+                    Log.d(TAG, "Found su binary at: " + path + " (not executable, using anyway)");
+                    return suBinary;
+                }
+            }
+            suProbeDone = true;
+            Log.w(TAG, "su binary not found in known locations, falling back to 'su'");
+            return "su";
         }
-        Log.w(TAG, "su binary not found in known locations, falling back to 'su'");
-        return "su";
     }
 
-    /** Forces re-discovery of the su binary. */
+    /**
+     * Discards the cached su location so the next call probes again.
+     */
     public static void resetSuBinary() {
-        suBinary = null;
+        synchronized (SU_LOCK) {
+            suBinary = null;
+            suProbeDone = false;
+            suProbeTime = 0;
+        }
     }
 
     public static boolean isRootAvailable() {
@@ -176,19 +223,38 @@ public final class Shell {
             }
         }
 
+        // The su binary may only become visible after root was granted in the
+        // root manager, so probe the known locations once more before giving up.
+        if (last != null && last.exitCode == -1) {
+            resetSuBinary();
+            String again = getSuBinary();
+            if (!again.equals(su)) {
+                Result r = execWithCode(new String[]{again, "-c", "id"});
+                if (r.output.contains("uid=0")) {
+                    return new RootStatus(true, again + " -c", r.output.trim(), r.exitCode);
+                }
+            }
+        }
+
         String detail;
+        String hint;
         if (last == null) {
             detail = "su could not be started";
+            hint = "Open your root manager and allow Optima, then tap Re-check.";
         } else if (last.exitCode == -1) {
-            detail = "su could not be started (binary missing or not executable)";
+            detail = "su binary not visible to the app yet";
+            hint = "Open your root manager, allow Optima, then tap Re-check.";
         } else if (last.output.contains("not found") || last.output.contains("No such file")) {
             detail = "su binary not found";
+            hint = "Install or enable a root solution, then tap Re-check.";
         } else if (!last.output.isEmpty()) {
             detail = "su replied: " + last.output.trim();
+            hint = "Open your root manager and allow Optima, then tap Re-check.";
         } else {
             detail = "root request denied (exit code " + last.exitCode + ")";
+            hint = "Open your root manager and allow Optima, then tap Re-check.";
         }
-        return new RootStatus(false, su, detail, last == null ? -1 : last.exitCode);
+        return new RootStatus(false, su, detail, last == null ? -1 : last.exitCode, hint);
     }
 
     public static void resetRootCheck() {
