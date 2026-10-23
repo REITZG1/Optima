@@ -116,6 +116,14 @@ public class ActivityMain extends AppCompatActivity {
                 startActivity(new Intent(this, ActivityProcess.class)));
         addToggle("Power Stats", "Battery power draw", v ->
                 startActivity(new Intent(this, ActivityPowerStat.class)));
+        addToggle("Immersive Mode", "Hide system bars", v ->
+                startActivity(new Intent(this, ActivityImmersive.class)));
+        addToggle("Rotation Control", "Lock screen orientation", v ->
+                startActivity(new Intent(this, ActivityRotation.class)));
+        addToggle("Brightness", "Set screen brightness", v ->
+                startActivity(new Intent(this, ActivityBrightness.class)));
+        addToggle("GPS Location", "Enable/disable GPS", v ->
+                startActivity(new Intent(this, ActivityGpsToggle.class)));
         addToggle("Other Settings", "Device information", v ->
                 startActivity(new Intent(this, ActivityOtherSettings.class)));
     }

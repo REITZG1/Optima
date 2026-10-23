@@ -84,6 +84,11 @@
         <activity android:name=".activities.ActivityFiles" android:exported="false" />
         <activity android:name=".activities.ActivityScreenTest" android:exported="false" />
         <activity android:name=".activities.ActivityMagisk" android:exported="false" />
+        <activity android:name=".activities.ActivityImmersive" android:exported="false" />
+        <activity android:name=".activities.ActivityRotation" android:exported="false" />
+        <activity android:name=".activities.ActivityBrightness" android:exported="false" />
+        <activity android:name=".activities.ActivityGpsToggle" android:exported="false" />
+        <activity android:name=".activities.ActivitySchedule" android:exported="false" />
 
         <service
             android:name=".services.KeepAliveService"

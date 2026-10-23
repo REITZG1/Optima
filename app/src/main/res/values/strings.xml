@@ -99,4 +99,42 @@
     <string name="not_supported">Not supported on this device</string>
     <string name="shortcut_long_label">Open the Optima overview</string>
 
+    <!-- Immersive mode -->
+    <string name="menu_immerse">Immersive Mode</string>
+    <string name="title_activity_immerse">Immersive Mode</string>
+    <string name="immerse_hide_nav">Hide navigation bar</string>
+    <string name="immerse_hide_status">Hide status bar</string>
+    <string name="immerse_show_all">Show all bars</string>
+    <string name="immerse_desc">Hide system bars for full-screen apps and games</string>
+
+    <!-- Rotation -->
+    <string name="menu_rotation">Rotation Control</string>
+    <string name="title_activity_rotation">Rotation Control</string>
+    <string name="rotation_auto">Auto-rotate</string>
+    <string name="rotation_locked">Locked</string>
+    <string name="rotation_portrait">Portrait</string>
+    <string name="rotation_landscape">Landscape</string>
+    <string name="rotation_desc">Lock or unlock screen rotation</string>
+
+    <!-- Brightness -->
+    <string name="menu_brightness">Brightness</string>
+    <string name="title_activity_brightness">Brightness</string>
+    <string name="brightness_manual">Manual brightness</string>
+    <string name="brightness_auto">Auto brightness</string>
+    <string name="brightness_desc">Adjust screen brightness level</string>
+
+    <!-- GPS -->
+    <string name="menu_gps">GPS Location</string>
+    <string name="title_activity_gps">GPS Location</string>
+    <string name="gps_on">GPS on</string>
+    <string name="gps_off">GPS off</string>
+    <string name="gps_desc">Enable or disable GPS location</string>
+
+    <!-- Schedule -->
+    <string name="menu_schedule">Schedule</string>
+    <string name="title_activity_schedule">Schedule</string>
+    <string name="schedule_desc">Run shell commands at set times</string>
+    <string name="schedule_add">Add scheduled task</string>
+    <string name="schedule_none">No scheduled tasks</string>
+
 </resources>
